@@ -1,0 +1,24 @@
+.login-page {
+  position: relative;
+
+  .login-wrap {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 320px;
+
+    padding: 32px;
+
+    .title {
+      margin-bottom: 1.6rem;
+    }
+
+    .row-actions {
+      button {
+        display: block;
+        margin-left: auto;
+      }
+    }
+  }
+}

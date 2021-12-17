@@ -1,0 +1,46 @@
+<div class="login-page">
+  <mat-card class="login-wrap">
+    <mat-card-title class="title"> Sign in </mat-card-title>
+
+    <mat-card-content>
+      <form class="login-form">
+        <div class="row-control" (submit)="handleOnSubmit()">
+          <mat-form-field appearance="outline" [style.width.%]="100">
+            <mat-label>Username</mat-label>
+            <input
+              matInput
+              [(ngModel)]="loginFormData.username"
+              name="username"
+            />
+          </mat-form-field>
+        </div>
+        <div class="row-control">
+          <mat-form-field appearance="outline" [style.width.%]="100">
+            <mat-label>Password</mat-label>
+            <input
+              type="password"
+              matInput
+              [(ngModel)]="loginFormData.password"
+              name="password"
+            />
+          </mat-form-field>
+        </div>
+        <div class="row-control">
+          <mat-checkbox [(ngModel)]="loginFormData.isRemember" name="isRemember"
+            >Remember me</mat-checkbox
+          >
+        </div>
+        <div class="row-control row-actions">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            (click)="handleOnSubmit()"
+          >
+            Log in
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
