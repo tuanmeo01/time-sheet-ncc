@@ -16,6 +16,10 @@
   - Have to follow the principle in some example UI design theme. (Ex: <https://element.eleme.io/#/en-US/theme/preview>)
 
 - Add timing for each Items. Notify when it nearly the deadline (before deadline 1h)
+- Add unit test for each component/service. Read more in: 
+    - [Angular unit testing tutorial with examples](https://blog.logrocket.com/angular-unit-testing-tutorial-examples/), 
+    - [Unit testing Angular apps](https://blogs.halodoc.io/angular-unit-testing/), 
+    - [Angular: Unit Testing Jasmine, Karma](https://medium.com/swlh/angular-unit-testing-jasmine-karma-step-by-step-e3376d110ab4)
 
 2. Should have great UI
 
