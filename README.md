@@ -9,6 +9,7 @@
 1. Create a powerful Todo app with Angular
 
 - Todo list with CRUD functions
+  - Use [Reactive Form](https://angular.io/guide/reactive-forms)
 - Filter by status: All/Completed/Active
 - Counter for each status. All: `3 active items / 10 items`; Completed: `7 completed items / 10 items`, Active: `3 active items / 10 items`.
 - Style by yourself, _do not_ use external UI lib like Material, NgZorro...
