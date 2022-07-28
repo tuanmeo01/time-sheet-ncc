@@ -26,8 +26,8 @@
 
 
 ### [NCC Angular basic checklist](https://github.com/angular-vietnam/100-days-of-angular)
-https://github.com/angular-vietnam/100-days-of-angular
-https://github.com/nccasia/ncc-angular
+- [100-days-of-angular](https://github.com/angular-vietnam/100-days-of-angular) - Recommended
+- [ncc-angular](https://github.com/nccasia/ncc-angular)
 
 ### [How to Write Cleaner Code](https://www.freecodecamp.org/news/best-practices-for-a-clean-and-performant-angular-application-288e7b39eb6f/)
 - https://angular.io/guide/styleguide#angular-coding-style-guide
