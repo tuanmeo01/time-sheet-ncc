@@ -4,6 +4,8 @@
 
 ### Requirement
 
+0. Init project by using [angular cli](https://angular.io/cli)
+
 1. Create a powerful Todo app with Angular
 
 - Todo list with CRUD functions
