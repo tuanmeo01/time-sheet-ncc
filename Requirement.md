@@ -22,11 +22,18 @@ ng new todo --directory .
   - Have to follow the principle in some example UI design theme. (Ex: <https://element.eleme.io/#/en-US/theme/preview>)
 
 - Add timing for each Items. Notify when it nearly the deadline (before deadline 1h)
+- Should have great UI
 
-2. Should have great UI
-
-3. Integrate with BE: create your own BE by using [mockapi](https://mockapi.io/docs))
-
+2. Recommendation Techniques
+- Integrate with BE: create your own BE by using [mockapi](https://mockapi.io/docs))
+- Use [Configuring application environments](https://angular.io/guide/build#configure-environment-specific-defaults)
+- Shard components: Input, Datepicker, Icon, Button... Can use Standalone feature
+- Create Todo module which contains all of "Todo - necessary components, services, pipes, types..."
+- Use Reactive form to handle todo form
+- Use Angular Service, Rxjs BehaviorSubject for shared state
+- Unsubscribe when component destroyed.
+- Consult [Sample-Structure](https://ops.nccsoft.vn/DefaultCollection/ncc-front-end-training/_git/ncc-angular-training?path=%2F&version=GBsample-structure&_a=contents)
+- Do **Self Code Review** and **Have to Follow** [Code review Checklist](http://ops.nccsoft.vn/DefaultCollection/ncc-front-end-training/_wiki/wikis/ncc-front-end-training.wiki/2019/Code-review-Checklist)
 
 ### [NCC Angular basic checklist](https://github.com/angular-vietnam/100-days-of-angular)
 - [100-days-of-angular](https://github.com/angular-vietnam/100-days-of-angular) - Recommended
