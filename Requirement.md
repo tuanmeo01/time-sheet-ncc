@@ -4,9 +4,11 @@
 
 ### Requirement
 
-0. Init project by using [angular cli](https://angular.io/cli)
+0. Prepare for project
 ```
-ng new todo --directory .
+npm install
+
+npm run prepare
 ```
 
 1. Create a powerful Todo app with Angular
