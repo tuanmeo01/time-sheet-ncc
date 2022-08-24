@@ -10,7 +10,7 @@ describe('TextFieldComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ TextFieldComponent ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(TextFieldComponent);
     component = fixture.componentInstance;

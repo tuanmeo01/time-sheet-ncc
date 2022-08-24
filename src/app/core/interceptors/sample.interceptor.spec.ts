@@ -6,7 +6,7 @@ describe('SampleInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
       SampleInterceptor
-      ]
+    ]
   }));
 
   it('should be created', () => {

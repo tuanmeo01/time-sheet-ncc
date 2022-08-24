@@ -10,7 +10,7 @@ describe('IconComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ IconComponent ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(IconComponent);
     component = fixture.componentInstance;

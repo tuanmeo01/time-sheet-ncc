@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -6,13 +6,8 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './text-field.component.html',
-  styleUrls: ['./text-field.component.scss']
+  styleUrls: ['./text-field.component.scss'],
 })
-export class TextFieldComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class TextFieldComponent {
+  constructor() {}
 }
