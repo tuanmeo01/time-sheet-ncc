@@ -6,6 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SamplePipe implements PipeTransform {
 
+  // eslint-disable-next-line no-unused-vars
   transform(value: unknown, ...args: unknown[]): unknown {
     return null;
   }
