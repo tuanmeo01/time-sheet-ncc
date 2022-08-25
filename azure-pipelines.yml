@@ -14,7 +14,6 @@ steps:
     export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-    npm install -g @angular/cli
     npm run lint
 
   displayName: 'Run lint script'
