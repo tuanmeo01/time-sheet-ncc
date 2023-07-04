@@ -31,7 +31,7 @@ npm run prepare
 - Create Shared components: Input, Datepicker, Icon, Button... Can use Standalone feature
 - Create Todo module which contains all of "Todo - necessary components, services, pipes, types..."
 - Use Reactive form to handle todo form
-- Use Angular Service, Rxjs BehaviorSubject for shared data and api
+- Use Angular Service, Rxjs BehaviorSubject for shared data and api. Call api in chain with flattening operator
 - Integrate with BE: create your own BE by using [mockapi](https://mockapi.io/docs))
 - Use [Configuring application environments](https://angular.io/guide/build#configure-environment-specific-defaults)
 - Unsubscribe when component destroyed.
