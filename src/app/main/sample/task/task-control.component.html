@@ -80,8 +80,11 @@
           </ngx-datatable-column>
 
           <ngx-datatable-column name="Actions" [width]="120" [sortable]="false">
-            <ng-template ngx-datatable-cell-template>
-              <div class="d-flex align-items-center">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <div
+                class="d-flex align-items-center"
+                (click)="$event.preventDefault(); $event.stopPropagation()"
+              >
                 <div ngbDropdown container="body">
                   <a
                     ngbDropdownToggle
@@ -106,12 +109,14 @@
                       href="javascript:void(0)"
                       ngbDropdownItem
                       class="d-flex align-items-center"
+                      (click)="archiveTask(row)"
                       ><i data-feather="archive" class="mr-50"></i> Archive</a
                     >
                     <a
                       href="javascript:void(0)"
                       ngbDropdownItem
                       class="d-flex align-items-center"
+                      (click)="deleteTask(row)"
                       ><i data-feather="trash-2" class="mr-50"></i> Delete</a
                     >
                   </div>
@@ -127,10 +132,12 @@
   </div>
 </div>
 <!-- Modal -->
-<ng-template #editModal let-modal>
-  <app-edit-task [title]="'Edit Task'" [modal]="modal"></app-edit-task>
-</ng-template>
-<ng-template #addModal let-modal>
-  <app-add-task [title]="'Add Task'" [modal]="modal"></app-add-task>
+
+<ng-template #modal let-modal>
+  <app-add-task
+    [task]="taskEdit"
+    [title]="'Add Task'"
+    [modal]="modal"
+  ></app-add-task>
 </ng-template>
 <!-- / Modal -->

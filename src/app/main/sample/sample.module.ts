@@ -13,9 +13,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CardSnippetModule } from "@core/components/card-snippet/card-snippet.module";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgSelectModule } from "@ng-select/ng-select";
-import { AddTaskComponent } from "./task/add-task/add-task.component";
-import { EditTaskComponent } from "./task/edit-task/edit-task.component";
-import { SampleComponent } from "./task/sample.component";
+import { AddTaskComponent } from "./task/task-control/add-task.component";
+import { SampleComponent } from "./task/task-control.component";
 import { TimeSheetService } from "./time-sheet.service";
 
 const routes = [
@@ -34,12 +33,7 @@ const routes = [
 ];
 
 @NgModule({
-  declarations: [
-    SampleComponent,
-    HomeComponent,
-    AddTaskComponent,
-    EditTaskComponent,
-  ],
+  declarations: [SampleComponent, HomeComponent, AddTaskComponent],
   imports: [
     RouterModule.forChild(routes),
     ContentHeaderModule,
