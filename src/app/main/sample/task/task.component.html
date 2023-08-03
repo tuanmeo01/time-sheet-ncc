@@ -5,39 +5,47 @@
     <div class="card p-2">
       <section id="ngx-datatable-kitchen-sink">
         <h4 class="card-title">Task</h4>
-        <div class="row mb-2">
-          <div class="col-md-6 col-4 d-flex justify-content-md-start">
-            <div
-              class="d-flex align-items-center justify-content-end pr-1 pb-1 pl-1 pl-md-0 pb-md-0"
-            >
-              <input
-                type="search"
-                placeholder="Search"
-                class="form-control ml-25"
-                (keyup)="filterUpdate($event)"
-                (search)="filterUpdate($event)"
-              />
-            </div>
+        <div class="row mb-2 d-flex justify-content-center align-items-center">
+          <div class="col-xl-3 col-md-3 col-12 mb-1">
+            <label class="label mb-1">Search</label>
+            <input
+              type="search"
+              placeholder="Search"
+              class="form-control"
+              (keyup)="filterUpdate($event)"
+              (search)="filterUpdate($event)"
+            />
           </div>
-          <div class="col-md-6 col-12 d-flex justify-content-md-end">
-            <div
-              class="d-flex align-items-center justify-content-end pr-1 pb-1 pl-1 pl-md-0 pb-md-0"
+          <div class="col-md-4"></div>
+          <div class="col-xl-3 col-md-3 col-12">
+            <label class="label mb-1">Loại task</label>
+            <fieldset class="form-group">
+              <ng-select
+                placeholder="All"
+                formControlName="type"
+                [items]="typeTask"
+                [bindValue]="'value'"
+                [bindLabel]="'item'"
+                [clearable]="false"
+                (change)="filterFast($event)"
+              ></ng-select>
+            </fieldset>
+          </div>
+          <div class="col-md-2 col-12 mt-1 d-flex justify-content-end">
+            <button
+              (click)="addTask()"
+              type="button"
+              class="btn btn-primary"
+              rippleEffect
             >
-              <button
-                (click)="addTask()"
-                type="button"
-                class="btn btn-primary"
-                rippleEffect
-              >
-                New task
-              </button>
-            </div>
+              New task
+            </button>
           </div>
         </div>
         <ngx-datatable
           [rows]="task"
           [rowHeight]="58"
-          class="bootstrap core-bootstrap cursor"
+          class="bootstrap core-bootstrap cursor-pointer"
           [limit]="10"
           [columnMode]="ColumnMode.force"
           [headerHeight]="40"
@@ -47,10 +55,6 @@
           (activate)="onActivate($event)"
           (select)="onSelect($event)"
         >
-          <ngx-datatable-column
-            [sortable]="false"
-            [width]="20"
-          ></ngx-datatable-column>
           <ngx-datatable-column
             name="STT"
             prop="id"
@@ -62,16 +66,24 @@
             [width]="930"
           ></ngx-datatable-column>
           <ngx-datatable-column name="Type" prop="type" [width]="200">
-            <ng-template let-status="value" ngx-datatable-cell-template>
+            <ng-template let-type="value" ngx-datatable-cell-template>
               <div
                 class="badge badge-pill"
-                [class.badge-light-primary]="status === 0"
-                [class.badge-light-success]="status === 1"
+                [class.badge-light-primary]="type === 0"
+                [class.badge-light-success]="type === 1"
+                [ngbTooltip]="
+                  type === 1
+                    ? 'These tasks are automatically added to all new projects'
+                    : type === 0
+                    ? 'These task must be manually added to projects'
+                    : 'Undefine'
+                "
+                placement="top"
               >
                 {{
-                  status === 1
+                  type === 1
                     ? "Common task"
-                    : status === 0
+                    : type === 0
                     ? "Other task"
                     : "Null"
                 }}
@@ -106,14 +118,13 @@
                     aria-labelledby="dropdownBrowserState"
                   >
                     <a
-                      href="javascript:void(0)"
                       ngbDropdownItem
                       class="d-flex align-items-center"
                       (click)="archiveTask(row)"
                       ><i data-feather="archive" class="mr-50"></i> Archive</a
                     >
                     <a
-                      href="javascript:void(0)"
+                      *ngIf="row.isDeleted"
                       ngbDropdownItem
                       class="d-flex align-items-center"
                       (click)="deleteTask(row)"
@@ -134,10 +145,10 @@
 <!-- Modal -->
 
 <ng-template #modal let-modal>
-  <app-add-task
+  <app-control-task
     [task]="taskEdit"
-    [title]="'Add Task'"
+    [title]="title"
     [modal]="modal"
-  ></app-add-task>
+  ></app-control-task>
 </ng-template>
 <!-- / Modal -->

@@ -6,9 +6,9 @@ import { TimeSheetService } from "../../time-sheet.service";
 import { TaskService } from "../task.service";
 import { Task } from "app/model/task";
 @Component({
-  selector: "app-add-task",
-  templateUrl: "./add-task.component.html",
-  styleUrls: ["./add-task.component.scss"],
+  selector: "app-control-task",
+  templateUrl: "./task-controlcomponent.html",
+  styleUrls: ["./task-control.component.scss"],
   encapsulation: ViewEncapsulation.None,
 })
 export class AddTaskComponent implements OnInit {

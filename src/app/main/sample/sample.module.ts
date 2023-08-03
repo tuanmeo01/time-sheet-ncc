@@ -13,8 +13,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CardSnippetModule } from "@core/components/card-snippet/card-snippet.module";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgSelectModule } from "@ng-select/ng-select";
-import { AddTaskComponent } from "./task/task-control/add-task.component";
-import { SampleComponent } from "./task/task-control.component";
+import { AddTaskComponent } from "./task/task-control/task-control.component";
+import { SampleComponent } from "./task/task.component";
 import { TimeSheetService } from "./time-sheet.service";
 
 const routes = [

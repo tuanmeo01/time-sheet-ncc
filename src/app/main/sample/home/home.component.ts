@@ -22,10 +22,6 @@ export class HomeComponent implements OnInit {
             isLink: true,
             link: "/home",
           },
-          {
-            name: "Sample",
-            isLink: false,
-          },
         ],
       },
     };
