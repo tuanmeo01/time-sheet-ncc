@@ -64,7 +64,6 @@ export class SampleComponent implements OnInit {
       } else {
         this._timeService.getAllTask().subscribe((res: ResponseData) => {
           this.rows = res.result;
-
           this.tempData = this.rows;
           this.task = this.rows;
         });
@@ -112,8 +111,6 @@ export class SampleComponent implements OnInit {
   }
   filterFast(event) {
     const val = event.value;
-    console.log(val);
-
     if (val === null) {
       this.task = this.tempData;
     } else {
@@ -127,7 +124,6 @@ export class SampleComponent implements OnInit {
       });
       this.task = temp;
     }
-
     this.table.offset = 0;
   }
 

@@ -16,6 +16,7 @@ import { NgSelectModule } from "@ng-select/ng-select";
 import { AddTaskComponent } from "./task/task-control/task-control.component";
 import { SampleComponent } from "./task/task.component";
 import { TimeSheetService } from "./time-sheet.service";
+import { ProjectComponent } from "./project/project.component";
 
 const routes = [
   {
@@ -30,10 +31,21 @@ const routes = [
     data: { animation: "home" },
     canActivate: [AuthGuard],
   },
+  {
+    path: "project",
+    component: ProjectComponent,
+    data: { animation: "project" },
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
-  declarations: [SampleComponent, HomeComponent, AddTaskComponent],
+  declarations: [
+    SampleComponent,
+    HomeComponent,
+    AddTaskComponent,
+    ProjectComponent,
+  ],
   imports: [
     RouterModule.forChild(routes),
     ContentHeaderModule,

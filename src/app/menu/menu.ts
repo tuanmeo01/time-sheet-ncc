@@ -12,7 +12,14 @@ export const menu: CoreMenu[] = [
     id: "task",
     title: "Task",
     type: "item",
-    icon: "file",
+    icon: "book-open",
     url: "task",
+  },
+  {
+    id: "project",
+    title: "Project",
+    type: "item",
+    icon: "bar-chart-2",
+    url: "project",
   },
 ];
