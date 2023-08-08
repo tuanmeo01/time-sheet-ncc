@@ -90,7 +90,7 @@ export class AuthLoginV2Component implements OnInit {
    */
   ngOnInit(): void {
     if (localStorage.getItem("currentUser")) {
-      this._router.navigate(["/"]);
+      this._router.navigate(["/home"]);
     }
     this.loginForm = this._formBuilder.group({
       email: [""],

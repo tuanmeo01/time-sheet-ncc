@@ -21,21 +21,19 @@ import { ProjectComponent } from "./project/project.component";
 const routes = [
   {
     path: "task",
-    component: SampleComponent,
-    data: { animation: "datatables" },
-    canActivate: [AuthGuard],
+    loadChildren: () => import("./task/task.module").then((m) => m.TaskModule),
+    canActive: [AuthGuard],
   },
   {
     path: "home",
-    component: HomeComponent,
-    data: { animation: "home" },
-    canActivate: [AuthGuard],
+    loadChildren: () => import("./home/home.module").then((m) => m.HomeModule),
+    canActive: [AuthGuard],
   },
   {
     path: "project",
-    component: ProjectComponent,
-    data: { animation: "project" },
-    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import("./project/project.module").then((m) => m.ProjectModule),
+    canActive: [AuthGuard],
   },
 ];
 
@@ -61,4 +59,4 @@ const routes = [
   providers: [TimeSheetService],
   exports: [SampleComponent, HomeComponent],
 })
-export class SampleModule {}
+export class AppsModule {}

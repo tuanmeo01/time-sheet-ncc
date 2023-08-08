@@ -47,8 +47,7 @@ export class AuthenticationService {
         if (res.success) {
           localStorage.setItem("currentUser", JSON.stringify(res));
           this.currentUserSubject.next(res);
-          this._router.navigate(["/"]);
-
+          this._router.navigate(["/home"]);
           return res;
         }
       });
@@ -61,6 +60,7 @@ export class AuthenticationService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem("currentUser");
+    localStorage.removeItem("userInfo");
     // notify
     this.currentUserSubject.next(null);
   }

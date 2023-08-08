@@ -1,1 +1,149 @@
-<p>project works!</p>
+<div class="content-wrapper container-xxl p-0 card">
+  <div class="content-body card-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <!-- Basic Alerts start -->
+    <section id="ngx-datatable-kitchen-sink">
+      <div class="row" [formGroup]="form">
+        <div class="col-xl-3 col-md-3 col-12">
+          <label class="label mb-1">Client</label>
+          <fieldset class="form-group">
+            <ng-select
+              formControlName="search"
+              placeholder="All"
+              [items]="allClient"
+              [bindValue]="'value'"
+              [bindLabel]="'name'"
+              [(ngModel)]="clientDefault"
+              [clearable]="false"
+              (change)="changeClient($event)"
+            ></ng-select>
+          </fieldset>
+        </div>
+        <div class="col-xl-3 col-md-3 col-12">
+          <label class="label mb-1">Status</label>
+          <fieldset class="form-group">
+            <ng-select
+              formControlName="status"
+              placeholder="All Status"
+              [items]="status"
+              [(ngModel)]="statusDefault"
+              [bindValue]="'value'"
+              [bindLabel]="'name'"
+              [clearable]="false"
+              (change)="changeStatus($event)"
+            ></ng-select>
+          </fieldset>
+        </div>
+        <div class="col-md-6 col-12 d-flex justify-content-md-end">
+          <div
+            class="d-flex align-items-center justify-content-end pr-1 pb-1 pl-1 pl-md-0 pb-md-0"
+          >
+            <label class="d-flex align-items-center"
+              >Search<input
+                formControlName="search"
+                type="search"
+                placeholder="Search"
+                class="form-control ml-25"
+                (search)="filterUpdate($event)"
+            /></label>
+          </div>
+        </div>
+      </div>
+      <ngx-datatable
+        [rows]="kitchenSinkRows"
+        [rowHeight]="58"
+        class="bootstrap core-bootstrap"
+        [limit]="10"
+        [columnMode]="ColumnMode.force"
+        [headerHeight]="40"
+        [footerHeight]="50"
+        [scrollbarH]="true"
+        [limit]="basicSelectedOption"
+        (activate)="onActivate($event)"
+        (select)="onSelect($event)"
+      >
+        <ngx-datatable-column
+          [width]="50"
+          [sortable]="false"
+          [canAutoResize]="false"
+          [draggable]="false"
+          [resizeable]="false"
+        >
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Name" prop="name" [width]="100">
+        </ngx-datatable-column>
+        <ngx-datatable-column
+          name="PM"
+          prop="pms"
+          [width]="350"
+        ></ngx-datatable-column>
+        <ngx-datatable-column
+          name="Active Member"
+          prop="activeMember"
+          [width]="60"
+        ></ngx-datatable-column>
+        <ngx-datatable-column
+          name="Time start"
+          prop="timeStart"
+          [width]="120"
+        ></ngx-datatable-column>
+        <ngx-datatable-column
+          name="Time end"
+          prop="timeEnd"
+          [width]="120"
+        ></ngx-datatable-column>
+        <ngx-datatable-column name="Actions" [width]="100" [sortable]="false">
+          <ng-template ngx-datatable-cell-template>
+            <div class="d-flex align-items-center">
+              <div ngbDropdown container="body">
+                <a
+                  ngbDropdownToggle
+                  href="javascript:void(0);"
+                  class="hide-arrow"
+                  id="dropdownBrowserState"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i
+                    data-feather="more-vertical"
+                    class="text-primary cursor-pointer mr-50"
+                  ></i>
+                </a>
+                <div
+                  ngbDropdownMenu
+                  class="dropdown-menu-right"
+                  aria-labelledby="dropdownBrowserState"
+                >
+                  <a
+                    href="javascript:void(0)"
+                    ngbDropdownItem
+                    class="d-flex align-items-center"
+                    ><i data-feather="file-text" class="mr-50"></i> Details</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    ngbDropdownItem
+                    class="d-flex align-items-center"
+                    ><i data-feather="archive" class="mr-50"></i> Archive</a
+                  >
+                  <a
+                    href="javascript:void(0)"
+                    ngbDropdownItem
+                    class="d-flex align-items-center"
+                    ><i data-feather="trash-2" class="mr-50"></i> Delete</a
+                  >
+                </div>
+              </div>
+
+              <i data-feather="edit" class="text-primary cursor-pointer"></i>
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </section>
+    <!-- Basic Alerts end -->
+  </div>
+</div>

@@ -17,8 +17,8 @@ import { coreConfig } from "app/app-config";
 
 import { AppComponent } from "app/app.component";
 import { LayoutModule } from "app/layout/layout.module";
-import { SampleModule } from "app/main/sample/apps.module";
-import { JwtInterceptor } from "./auth/helpers";
+import { AuthGuard, JwtInterceptor } from "./auth/helpers";
+import { AppsModule } from "./main/sample/apps.module";
 
 const appRoutes: Routes = [
   {
@@ -27,9 +27,10 @@ const appRoutes: Routes = [
       import("./main/pages/pages.module").then((m) => m.PagesModule),
   },
   {
-    path: "",
-    redirectTo: "/home",
-    pathMatch: "full",
+    path: "home",
+    loadChildren: () =>
+      import("./main/sample/apps.module").then((m) => m.AppsModule),
+    canActivate: [AuthGuard],
   },
   {
     path: "**",
@@ -61,7 +62,7 @@ const appRoutes: Routes = [
 
     // App modules
     LayoutModule,
-    SampleModule,
+    AppsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }, // tự gắn token vào req
