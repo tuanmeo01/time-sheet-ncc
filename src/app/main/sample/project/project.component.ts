@@ -1,7 +1,14 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ProjectService } from "./project.service";
 import { ColumnMode, SelectionType } from "@swimlane/ngx-datatable";
+import { format } from "date-fns";
+import Swal from "sweetalert2";
+import { ToastrService } from "ngx-toastr";
+import { error } from "console";
+import { NgbActiveModal, NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { FormType } from "app/model/modalType";
+
 @Component({
   selector: "app-project",
   templateUrl: "./project.component.html",
@@ -9,11 +16,15 @@ import { ColumnMode, SelectionType } from "@swimlane/ngx-datatable";
   encapsulation: ViewEncapsulation.None,
 })
 export class ProjectComponent implements OnInit {
+  @ViewChild("modal") modal: NgbActiveModal;
+
   public contentHeader: object;
   public basicSelectedOption: number = 10;
   public allClient: any;
   public form: FormGroup;
   public kitchenSinkRows: any;
+  public title: string;
+  public type: FormType;
   public SelectionType = SelectionType;
   public clientDefault: string;
   public ColumnMode = ColumnMode;
@@ -23,11 +34,26 @@ export class ProjectComponent implements OnInit {
     { name: "DeActive Project", value: 1 },
   ];
   public statusDefault: number | string;
+  public row: any;
   constructor(
     private _projectService: ProjectService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private modalService: NgbModal,
+    private _toast: ToastrService
   ) {}
-
+  formatDateTime(dateString: string): string {
+    const date = new Date(dateString);
+    return format(date, "dd/MM/yyyy HH:mm");
+  }
+  modalOpen(modalSM, title: string, row: any, type: FormType) {
+    this.modalService.open(modalSM, {
+      centered: true,
+      size: "lg",
+    });
+    this.title = title;
+    this.type = type;
+    this.row = row;
+  }
   ngOnInit(): void {
     this.contentHeader = {
       headerTitle: "Home",
@@ -68,9 +94,7 @@ export class ProjectComponent implements OnInit {
           ),
         ];
         this.allClient = temp;
-
         this.clientDefault = this.allClient[0];
-        console.log(this.clientDefault);
         this.getAll();
       });
   }
@@ -84,7 +108,7 @@ export class ProjectComponent implements OnInit {
         this.kitchenSinkRows = res.result;
       });
   }
-  getAllProject() {}
+
   filterUpdate(e) {
     this.form.patchValue({
       search: e.target.value,
@@ -104,4 +128,85 @@ export class ProjectComponent implements OnInit {
   }
   onActivate(e) {}
   onSelect(e) {}
+  deleteProject(e) {
+    Swal.fire({
+      title: "Are U sure about that?",
+      icon: "success",
+      showCancelButton: true,
+      confirmButtonColor: "#7367F0",
+      preConfirm: async () => {
+        return this._projectService.deleteProject(e.id).subscribe(
+          (res) => {
+            this._toast.success("Delete Project", "Success", {
+              positionClass: "toast-top-right",
+              toastClass: "toast ngx-toastr",
+              closeButton: true,
+            });
+            this.getAll();
+          },
+          (error) => {
+            console.log(error.error.error.message);
+
+            this._toast.error(`${error.error.error.message}`, "Error", {
+              positionClass: "toast-top-right",
+              toastClass: "toast ngx-toastr",
+              closeButton: true,
+            });
+          }
+        );
+      },
+      cancelButtonColor: "#E42728",
+      cancelButtonText: "Cancel",
+      confirmButtonText: "Yes, I wanna it!",
+      customClass: {
+        confirmButton: "btn btn-primary",
+        cancelButton: "btn btn-danger ml-1",
+      },
+      allowOutsideClick: () => {
+        return !Swal.isLoading();
+      },
+    });
+  }
+  deActiveProject(e) {
+    Swal.fire({
+      title: "Are U sure about that?",
+      icon: "success",
+      showCancelButton: true,
+      confirmButtonColor: "#7367F0",
+      preConfirm: async () => {
+        return this._projectService.deActiveProject(e.id).subscribe(
+          (res) => {
+            this._toast.success("DeActive Project", "Success", {
+              positionClass: "toast-top-right",
+              toastClass: "toast ngx-toastr",
+              closeButton: true,
+            });
+            this.getAll();
+          },
+          (error) => {
+            console.log(error.error.error.message);
+
+            this._toast.error(`${error.error.error.message}`, "Error", {
+              positionClass: "toast-top-right",
+              toastClass: "toast ngx-toastr",
+              closeButton: true,
+            });
+          }
+        );
+      },
+      cancelButtonColor: "#E42728",
+      cancelButtonText: "Cancel",
+      confirmButtonText: "Yes, I wanna it!",
+      customClass: {
+        confirmButton: "btn btn-primary",
+        cancelButton: "btn btn-danger ml-1",
+      },
+      allowOutsideClick: () => {
+        return !Swal.isLoading();
+      },
+    });
+  }
+  addProject() {
+    this.modalOpen(this.modal, "Add project", null, FormType.Create);
+  }
 }

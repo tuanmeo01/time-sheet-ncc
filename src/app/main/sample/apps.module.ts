@@ -8,6 +8,7 @@ import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { AuthGuard } from "app/auth/helpers";
 import { ContentHeaderModule } from "app/layout/components/content-header/content-header.module";
 import { HomeComponent } from "./home/home.component";
+import { CdkStepperModule } from "@angular/cdk/stepper";
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CardSnippetModule } from "@core/components/card-snippet/card-snippet.module";
@@ -38,12 +39,7 @@ const routes = [
 ];
 
 @NgModule({
-  declarations: [
-    SampleComponent,
-    HomeComponent,
-    AddTaskComponent,
-    ProjectComponent,
-  ],
+  declarations: [SampleComponent, HomeComponent, AddTaskComponent],
   imports: [
     RouterModule.forChild(routes),
     ContentHeaderModule,

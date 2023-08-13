@@ -3,4 +3,7 @@
 
 .datatable-scroll {
   width: auto !important;
+  .datatable-row-center:hover {
+    background: rgba(51, 255, 0, 0.295);
+  }
 }

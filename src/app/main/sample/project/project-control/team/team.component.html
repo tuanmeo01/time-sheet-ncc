@@ -1,0 +1,249 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <section class="users-list-wrapper">
+      <!-- users filter start -->
+
+      <!-- users filter end -->
+
+      <div class="card">
+        <div class="row">
+          <div class="col-md-9 col-12">
+            <div class="d-flex justify-content-between align-items-center m-1">
+              <div class="col-2 p-0">
+                <label class="label mb-1">Number in row</label>
+
+                <select class="form-control mx-25" [(ngModel)]="selectedOption">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
+
+              <div class="col-5 col-md-5 mt-1">
+                <label class="label mb-1">Type</label>
+                <fieldset class="form-group">
+                  <ng-select
+                    [items]="selectRole"
+                    [clearable]="false"
+                    [(ngModel)]="selectedRole"
+                    name="selectedRole"
+                    bindLabel="name"
+                    placeholder="Select Role"
+                    (change)="filterByRole($event)"
+                  ></ng-select>
+                </fieldset>
+              </div>
+              <div class="col-5 col-md-5 mt-1">
+                <label class="label mb-1">Branch</label>
+
+                <fieldset class="form-group">
+                  <ng-select
+                    [items]="selectPlan"
+                    [(ngModel)]="selectedPlan"
+                    name="selectedPlan"
+                    [clearable]="false"
+                    bindLabel="name"
+                    placeholder="Select Plan"
+                    (change)="filterByPlan($event)"
+                  ></ng-select>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-md-3 col-12 d-flex justify-content-center justify-content-md-end align-items-center"
+          >
+            <div class="pr-1 pb-1 pb-md-0">
+              <label class="label mb-1">Search</label>
+              <input
+                [(ngModel)]="searchValue"
+                name="searchValue"
+                placeholder="email, name"
+                type="search"
+                class="form-control ml-25"
+                (search)="filterUpdate()"
+              />
+            </div>
+          </div>
+          <div class="col-md-12 mx-1 mb-1">
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="customCheck2"
+              />
+              <label class="custom-control-label" for="customCheck2"
+                >Show deactive member</label
+              >
+            </div>
+          </div>
+        </div>
+        <ngx-datatable
+          [rows]="tempData"
+          [rowHeight]="50"
+          class="bootstrap core-bootstrap cursor-pointer"
+          [limit]="selectedOption"
+          [columnMode]="ColumnMode.force"
+          [headerHeight]="50"
+          [footerHeight]="50"
+          [scrollbarH]="true"
+          [selected]="chkBoxSelected"
+          [selectionType]="SelectionType.checkbox"
+          (select)="customChkboxOnSelect($event)"
+        >
+          <ngx-datatable-column
+            [width]="50"
+            [sortable]="false"
+            [canAutoResize]="false"
+            [draggable]="false"
+            [resizeable]="false"
+          >
+            <ng-template
+              ngx-datatable-header-template
+              let-value="value"
+              let-allRowsSelected="allRowsSelected"
+              let-selectFn="selectFn"
+            >
+              <div
+                class="custom-control custom-control-primary custom-checkbox"
+              >
+                <input
+                  type="checkbox"
+                  class="custom-control-input"
+                  [checked]="allRowsSelected"
+                  (change)="selectFn(!allRowsSelected)"
+                  id="headerCustomChkbxRef"
+                />
+                <label
+                  class="custom-control-label"
+                  for="headerCustomChkbxRef"
+                ></label>
+              </div>
+            </ng-template>
+            <ng-template
+              ngx-datatable-cell-template
+              let-rowIndex="rowIndex"
+              let-value="value"
+              let-isSelected="isSelected"
+              let-onCheckboxChangeFn="onCheckboxChangeFn"
+            >
+              <div
+                class="custom-control custom-control-primary custom-checkbox"
+              >
+                <input
+                  type="checkbox"
+                  class="custom-control-input"
+                  [checked]="isSelected"
+                  (change)="onCheckboxChangeFn($event)"
+                  id="rowCustomChkbxRef{{ rowIndex }}"
+                />
+                <label
+                  class="custom-control-label"
+                  for="rowCustomChkbxRef{{ rowIndex }}"
+                ></label>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="User" prop="name" [width]="100">
+          </ngx-datatable-column>
+          <ngx-datatable-column
+            name="Email"
+            prop="emailAddress"
+            [width]="200"
+          ></ngx-datatable-column>
+
+          <ngx-datatable-column name="Position" prop="type" [width]="50">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              <div
+                class="badge badge-pill"
+                [ngClass]="{
+                  'badge-light-success': value === 1,
+                  'badge-light-secondary': value === 0,
+                  'badge-light-warning': value === 2
+                }"
+              >
+                {{
+                  value === 1
+                    ? "internship"
+                    : value === 0
+                    ? "staff"
+                    : value === 2
+                    ? "collaborator"
+                    : "undefine"
+                }}
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Level" prop="level" [width]="50">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              <div
+                class="badge badge-pill"
+                [ngClass]="{
+                  'badge-light-primary':
+                    value === 4 || value === 5 || value === 6,
+                  'badge-light-success':
+                    value === 7 || value === 8 || value === 9,
+                  'badge-light-warning':
+                    value === 10 || value === 11 || value === 12,
+                  'badge-light-primary':
+                    value === 14 || value === 15 || value === 16,
+                  'badge-light-info': value === 0,
+                  'badge-light-error': value === 1
+                }"
+              >
+                {{
+                  value === 0
+                    ? "Intern0"
+                    : value === 1
+                    ? "Intern1"
+                    : value === 2
+                    ? "Intern2"
+                    : value === 3
+                    ? "Intern3"
+                    : value === 4 || value === 5 || value === 6
+                    ? "Fresher"
+                    : value === 7 || value === 8 || value === 9
+                    ? "Junior"
+                    : value === 10 || value === 11 || value === 12
+                    ? "Middle"
+                    : value === 14 || value === 15 || value === 16
+                    ? "Senior"
+                    : "Senior"
+                }}
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </section>
+  </div>
+  <div class="selected-column col-12 mt-1">
+    <hr class="w-100" />
+    <h5 class="mx-1">
+      Selections <small>({{ chkBoxSelected?.length }})</small>
+    </h5>
+    <ul>
+      <li class="row" *ngFor="let sel of chkBoxSelected">
+        <div class="col-md-6">
+          {{ sel.name }}
+        </div>
+        <div class="col-md-6">
+          <fieldset class="form-group">
+            <ng-select
+              [items]="positionTask"
+              [clearable]="false"
+              [(ngModel)]="selectedPosition.items"
+              name="selectedPosition"
+              bindLabel="name"
+              placeholder="Project Manager"
+            ></ng-select>
+          </fieldset>
+        </div>
+      </li>
+
+      <li *ngIf="!chkBoxSelected?.length">No Selections</li>
+    </ul>
+  </div>
+</div>

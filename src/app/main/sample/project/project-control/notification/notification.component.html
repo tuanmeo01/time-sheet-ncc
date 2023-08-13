@@ -1,0 +1,27 @@
+<div class="content-wrapper p-0 card">
+  <div class="content-body card-body">
+    <div class="custom-control custom-checkbox">
+      <input
+        type="checkbox"
+        (click)="checked()"
+        class="custom-control-input"
+        id="customCheck5"
+      />
+      <label class="custom-control-label" for="customCheck5"
+        >Gửi thông báo đến Komu</label
+      >
+    </div>
+    <div class="col-xl-12 col-md-12 col-12 mb-1">
+      <div class="form-group">
+        <input
+          autofocus
+          [disabled]="isChecked"
+          type="text"
+          class="form-control"
+          id="basicInput"
+          placeholder="Komu chanel id"
+        />
+      </div>
+    </div>
+  </div>
+</div>

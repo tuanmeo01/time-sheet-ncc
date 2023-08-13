@@ -53,7 +53,6 @@ const appRoutes: Routes = [
     //NgBootstrap
     NgbModule,
     ToastrModule.forRoot(),
-
     // Core modules
     CoreModule.forRoot(coreConfig),
     CoreCommonModule,

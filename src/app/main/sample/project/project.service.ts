@@ -10,4 +10,18 @@ export class ProjectService {
       params,
     });
   }
+  deleteProject(id: string) {
+    const params = new HttpParams().set("Id", id);
+    return this._http.delete<any>(`${environment.apiUrl}/Project/Delete`, {
+      params,
+    });
+  }
+  deActiveProject(id: string) {
+    return this._http.post<any>(`${environment.apiUrl}/Project/Inactive`, {
+      id,
+    });
+  }
+  getAllTask() {
+    return this._http.get(`${environment.apiUrl}/Task/GetAll`);
+  }
 }

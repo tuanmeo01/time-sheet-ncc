@@ -1,0 +1,157 @@
+<div class="content-wrapper p-0 card">
+  <div class="content-body">
+    <section id="collapsible">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card-body collapse-icon">
+            <ngb-accordion #acc="ngbAccordion">
+              <ngb-panel>
+                <ng-template ngbPanelTitle>
+                  <span class="lead collapse-title"> Selected task </span>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <ngx-datatable
+                    [rows]="listTaskOther"
+                    [rowHeight]="58"
+                    class="bootstrap core-bootstrap cursor-pointer"
+                    [columnMode]="ColumnMode.force"
+                    [headerHeight]="40"
+                    [footerHeight]="50"
+                    [scrollbarH]="true"
+                    [limit]="basicSelectedOption"
+                    (select)="customChkboxOnSelect($event)"
+                  >
+                    <ngx-datatable-column
+                      [width]="50"
+                      [sortable]="false"
+                      [canAutoResize]="false"
+                      [draggable]="false"
+                      [resizeable]="false"
+                    >
+                      <ng-template
+                        ngx-datatable-header-template
+                        let-value="value"
+                        let-allRowsSelected="allRowsSelected"
+                        let-selectFn="selectFn"
+                      >
+                        <div class="custom-control custom-checkbox">
+                          <input
+                            type="checkbox"
+                            class="custom-control-input"
+                            checked
+                            (change)="selectFn(!allRowsSelected)"
+                            id="headerChkbxRef"
+                          />
+                          <label
+                            class="custom-control-label"
+                            for="headerChkbxRef"
+                          ></label>
+                        </div>
+                      </ng-template>
+                      <ng-template
+                        ngx-datatable-cell-template
+                        let-rowIndex="rowIndex"
+                        let-value="value"
+                        let-isSelected="isSelected"
+                        let-onCheckboxChangeFn="onCheckboxChangeFn"
+                      >
+                        <div class="custom-control custom-checkbox">
+                          <input
+                            type="checkbox"
+                            class="custom-control-input"
+                            checked
+                            (change)="onCheckboxChangeFn($event)"
+                            id="rowChkbxRef{{ rowIndex }}"
+                          />
+                          <label
+                            class="custom-control-label"
+                            for="rowChkbxRef{{ rowIndex }}"
+                          ></label>
+                        </div>
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column
+                      name="STT"
+                      prop="id"
+                      [width]="100"
+                    ></ngx-datatable-column>
+                    <ngx-datatable-column
+                      name="Name"
+                      prop="name"
+                      [width]="330"
+                    ></ngx-datatable-column>
+                    <ngx-datatable-column
+                      name="Action"
+                      [width]="120"
+                      [sortable]="false"
+                    >
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        <div class="d-flex align-items-center">
+                          <div ngbDropdown container="body">
+                            <button
+                              (click)="deleteTask(row)"
+                              class="btn btn-primary"
+                            >
+                              Xóa
+                            </button>
+                          </div>
+                        </div>
+                      </ng-template>
+                    </ngx-datatable-column>
+                  </ngx-datatable>
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel>
+                <ng-template ngbPanelTitle>
+                  <span class="lead collapse-title">Select task </span>
+                </ng-template>
+                <ng-template ngbPanelContent>
+                  <ngx-datatable
+                    [rows]="listTaskCommon"
+                    [rowHeight]="58"
+                    class="bootstrap core-bootstrap cursor-pointer"
+                    [limit]="10"
+                    [columnMode]="ColumnMode.force"
+                    [headerHeight]="40"
+                    [footerHeight]="50"
+                    [scrollbarH]="true"
+                    [limit]="basicSelectedOption"
+                  >
+                    <ngx-datatable-column
+                      name="STT"
+                      prop="id"
+                      [width]="100"
+                    ></ngx-datatable-column>
+                    <ngx-datatable-column
+                      name="Name"
+                      prop="name"
+                      [width]="330"
+                    ></ngx-datatable-column>
+                    <ngx-datatable-column
+                      name="Action"
+                      [width]="120"
+                      [sortable]="false"
+                    >
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        <div class="d-flex align-items-center">
+                          <div ngbDropdown container="body">
+                            <button
+                              (click)="addTask(row)"
+                              class="btn btn-primary"
+                            >
+                              Add
+                            </button>
+                          </div>
+                        </div>
+                      </ng-template>
+                    </ngx-datatable-column>
+                  </ngx-datatable>
+                </ng-template>
+              </ngb-panel>
+            </ngb-accordion>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

@@ -9,9 +9,17 @@ import { ContentHeaderModule } from "app/layout/components/content-header/conten
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CardSnippetModule } from "@core/components/card-snippet/card-snippet.module";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModalModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgSelectModule } from "@ng-select/ng-select";
+import { ProjectControlComponent } from "./project-control/project-control.component";
 import { ProjectComponent } from "./project.component";
+import { BrowserModule } from "@angular/platform-browser";
+import { CommonModule } from "@angular/common";
+import { GeneralComponent } from "./project-control/general/general.component";
+import { TeamComponent } from "./project-control/team/team.component";
+import { TaskComponent } from "./project-control/task/task.component";
+import { NotificationComponent } from "./project-control/notification/notification.component";
+import { Ng2FlatpickrModule } from "ng2-flatpickr";
 
 const routes = [
   {
@@ -22,13 +30,23 @@ const routes = [
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ProjectControlComponent,
+    ProjectComponent,
+    GeneralComponent,
+    TeamComponent,
+    TaskComponent,
+    NotificationComponent,
+  ],
   imports: [
     RouterModule.forChild(routes),
     ContentHeaderModule,
     FormsModule,
+    Ng2FlatpickrModule,
+    CommonModule,
     NgbModule,
     ReactiveFormsModule,
+    NgbModalModule,
     CardSnippetModule,
     NgxDatatableModule,
     TranslateModule,
@@ -36,6 +54,6 @@ const routes = [
     NgSelectModule,
   ],
   providers: [],
-  exports: [],
+  exports: [ProjectComponent],
 })
 export class ProjectModule {}

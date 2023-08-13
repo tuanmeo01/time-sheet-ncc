@@ -1,0 +1,122 @@
+<div class="content-wrapper p-0 card">
+  <div class="content-body card-body">
+    <div class="col-12">
+      <div class="form-group row">
+        <div class="col-sm-2 col-form-label">
+          <label>Client</label>
+        </div>
+        <div class="col-sm-7">
+          <fieldset class="form-group">
+            <ng-select
+              [items]="listClient"
+              [bindValue]="'id'"
+              [bindLabel]="'name'"
+              [clearable]="false"
+              (change)="changeClient($event)"
+              placeholder="Client"
+            ></ng-select>
+          </fieldset>
+        </div>
+        <div class="col-sm-3 d-flex flex-column">
+          <button rippleEffect class="btn btn-primary">Add client</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-group row">
+        <div class="col-sm-2 col-form-label">
+          <label>Project name</label>
+        </div>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            id="first-name"
+            class="form-control"
+            name="fname"
+            placeholder="Project name"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group row">
+        <div class="col-sm-2 col-form-label">
+          <label>Project Code</label>
+        </div>
+        <div class="col-sm-6">
+          <input
+            type="text"
+            id="first-name"
+            class="form-control"
+            name="fname"
+            placeholder="Project code"
+          />
+        </div>
+        <div class="col-sm-4">
+          <ng2-flatpickr
+            [config]="DateRangeOptions"
+            placeholder="Select date range"
+            name="DateRange"
+          ></ng2-flatpickr>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group row">
+        <div class="col-sm-2 col-form-label">
+          <label>Note</label>
+        </div>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            id="first-name"
+            class="form-control"
+            name="fname"
+            placeholder="Note"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group row">
+        <div class="col-sm-2 col-form-label">
+          <label>All user</label>
+        </div>
+        <div class="col-sm-10">
+          <div class="custom-control custom-checkbox mt-1">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="customCheck1"
+            />
+            <label class="custom-control-label" for="customCheck1"
+              >Auto add user as a member of this project when creating new
+              user</label
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group row">
+        <div class="col-sm-2 col-form-label">
+          <label>Project type</label>
+        </div>
+        <div class="col-sm-5">
+          <fieldset class="form-group">
+            <ng-select
+              [items]="listProjectType"
+              [bindValue]="'value'"
+              [bindLabel]="'name'"
+              [clearable]="false"
+              (change)="changeProjectType($event)"
+              placeholder="Project type"
+              [(ngModel)]="defaultProjectType"
+            ></ng-select>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
