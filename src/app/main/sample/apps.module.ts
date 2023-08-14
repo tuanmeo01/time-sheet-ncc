@@ -8,7 +8,6 @@ import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { AuthGuard } from "app/auth/helpers";
 import { ContentHeaderModule } from "app/layout/components/content-header/content-header.module";
 import { HomeComponent } from "./home/home.component";
-import { CdkStepperModule } from "@angular/cdk/stepper";
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CardSnippetModule } from "@core/components/card-snippet/card-snippet.module";
@@ -17,7 +16,6 @@ import { NgSelectModule } from "@ng-select/ng-select";
 import { AddTaskComponent } from "./task/task-control/task-control.component";
 import { SampleComponent } from "./task/task.component";
 import { TimeSheetService } from "./time-sheet.service";
-import { ProjectComponent } from "./project/project.component";
 
 const routes = [
   {

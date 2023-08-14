@@ -134,7 +134,10 @@
                   class="dropdown-menu-right"
                   aria-labelledby="dropdownBrowserState"
                 >
-                  <a ngbDropdownItem class="d-flex align-items-center"
+                  <a
+                    ngbDropdownItem
+                    class="d-flex align-items-center"
+                    (click)="viewProject(row)"
                     ><i data-feather="file-text" class="mr-50"></i> View</a
                   >
                   <a
@@ -161,12 +164,20 @@
     <!-- Basic Alerts end -->
   </div>
 </div>
-
+<ngx-loading [show]="loading"></ngx-loading>
 <ng-template #modal let-modal>
   <app-project-control
+    #refresh
     [title]="title"
     [modal]="modal"
     [type]="type"
     [row]="row"
   ></app-project-control>
+</ng-template>
+<ng-template #modal2 let-modal>
+  <app-view-project
+    [modal2]="modal2"
+    [row]="row"
+    [title]="title"
+  ></app-view-project>
 </ng-template>

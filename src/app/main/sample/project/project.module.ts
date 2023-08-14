@@ -7,19 +7,20 @@ import { CoreCommonModule } from "@core/common.module";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { ContentHeaderModule } from "app/layout/components/content-header/content-header.module";
 
+import { CommonModule, DatePipe } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CardSnippetModule } from "@core/components/card-snippet/card-snippet.module";
 import { NgbModalModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgSelectModule } from "@ng-select/ng-select";
-import { ProjectControlComponent } from "./project-control/project-control.component";
-import { ProjectComponent } from "./project.component";
-import { BrowserModule } from "@angular/platform-browser";
-import { CommonModule } from "@angular/common";
-import { GeneralComponent } from "./project-control/general/general.component";
-import { TeamComponent } from "./project-control/team/team.component";
-import { TaskComponent } from "./project-control/task/task.component";
-import { NotificationComponent } from "./project-control/notification/notification.component";
 import { Ng2FlatpickrModule } from "ng2-flatpickr";
+import { NgxLoadingModule } from "ngx-loading";
+import { GeneralComponent } from "./project-control/general/general.component";
+import { NotificationComponent } from "./project-control/notification/notification.component";
+import { ProjectControlComponent } from "./project-control/project-control.component";
+import { TaskComponent } from "./project-control/task/task.component";
+import { TeamComponent } from "./project-control/team/team.component";
+import { ProjectComponent } from "./project.component";
+import { ViewProjectComponent } from './view-project/view-project.component';
 
 const routes = [
   {
@@ -37,6 +38,7 @@ const routes = [
     TeamComponent,
     TaskComponent,
     NotificationComponent,
+    ViewProjectComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -44,6 +46,7 @@ const routes = [
     FormsModule,
     Ng2FlatpickrModule,
     CommonModule,
+    NgxLoadingModule,
     NgbModule,
     ReactiveFormsModule,
     NgbModalModule,
@@ -53,7 +56,7 @@ const routes = [
     CoreCommonModule,
     NgSelectModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   exports: [ProjectComponent],
 })
 export class ProjectModule {}

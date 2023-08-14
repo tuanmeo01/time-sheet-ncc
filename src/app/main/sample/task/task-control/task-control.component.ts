@@ -41,7 +41,6 @@ export class AddTaskComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("edit", this.taskEdit);
     if (this.taskEdit) {
       //edit
       this.formAddTask.patchValue({

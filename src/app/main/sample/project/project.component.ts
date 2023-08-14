@@ -1,13 +1,12 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ProjectService } from "./project.service";
-import { ColumnMode, SelectionType } from "@swimlane/ngx-datatable";
-import { format } from "date-fns";
-import Swal from "sweetalert2";
-import { ToastrService } from "ngx-toastr";
-import { error } from "console";
 import { NgbActiveModal, NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ColumnMode, SelectionType } from "@swimlane/ngx-datatable";
 import { FormType } from "app/model/modalType";
+import { format } from "date-fns";
+import { ToastrService } from "ngx-toastr";
+import Swal from "sweetalert2";
+import { ProjectService } from "./project.service";
 
 @Component({
   selector: "app-project",
@@ -17,6 +16,8 @@ import { FormType } from "app/model/modalType";
 })
 export class ProjectComponent implements OnInit {
   @ViewChild("modal") modal: NgbActiveModal;
+  @ViewChild("modal2") modal2: NgbActiveModal;
+  public loading = false;
 
   public contentHeader: object;
   public basicSelectedOption: number = 10;
@@ -74,7 +75,6 @@ export class ProjectComponent implements OnInit {
       },
     };
     this.statusDefault = this.status[1].value;
-    console.log(this.statusDefault);
 
     this.form = this.fb.group({
       status: 0,
@@ -83,9 +83,11 @@ export class ProjectComponent implements OnInit {
     this.getClientAll();
   }
   getClientAll() {
+    this.loading = true;
     this._projectService
       .getAll(this.form.get("status").value, this.form.get("search").value)
       .subscribe((res) => {
+        this.loading = false;
         const temp = [
           ...new Set(
             res.result.map((item) => {
@@ -99,12 +101,14 @@ export class ProjectComponent implements OnInit {
       });
   }
   getAll() {
+    this.loading = true;
     this.form.patchValue({
       search: this.clientDefault,
     });
     this._projectService
       .getAll(this.form.get("status").value, this.form.get("search").value)
       .subscribe((res) => {
+        this.loading = false;
         this.kitchenSinkRows = res.result;
       });
   }
@@ -126,7 +130,18 @@ export class ProjectComponent implements OnInit {
     });
     this.getAll();
   }
-  onActivate(e) {}
+  onActivate(event) {
+    if (
+      !event.event.ctrlKey &&
+      event.event.type === "click" &&
+      event.column.name != "Actions" &&
+      event.column.name != "checkbox"
+    ) {
+      this._projectService.getProjectById(event.row.id).subscribe((res) => {
+        this.modalOpen(this.modal, "Edit project", res.result, FormType.Update);
+      });
+    }
+  }
   onSelect(e) {}
   deleteProject(e) {
     Swal.fire({
@@ -145,8 +160,6 @@ export class ProjectComponent implements OnInit {
             this.getAll();
           },
           (error) => {
-            console.log(error.error.error.message);
-
             this._toast.error(`${error.error.error.message}`, "Error", {
               positionClass: "toast-top-right",
               toastClass: "toast ngx-toastr",
@@ -184,8 +197,6 @@ export class ProjectComponent implements OnInit {
             this.getAll();
           },
           (error) => {
-            console.log(error.error.error.message);
-
             this._toast.error(`${error.error.error.message}`, "Error", {
               positionClass: "toast-top-right",
               toastClass: "toast ngx-toastr",
@@ -206,7 +217,13 @@ export class ProjectComponent implements OnInit {
       },
     });
   }
+  showSpinner() {
+    this.loading = true;
+  }
   addProject() {
     this.modalOpen(this.modal, "Add project", null, FormType.Create);
+  }
+  viewProject(e) {
+    this.modalOpen(this.modal2, "View project", e, null);
   }
 }

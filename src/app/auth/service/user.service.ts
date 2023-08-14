@@ -13,7 +13,6 @@ export class UserService {
     return this._http
       .get<any>(`${environment.apiUrl}/Session/GetCurrentLoginInformations`)
       .subscribe((res) => {
-        console.log(res);
         localStorage.setItem("userInfo", JSON.stringify(res.result.user));
       });
   }

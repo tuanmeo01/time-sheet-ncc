@@ -44,7 +44,7 @@
       <form (ngSubmit)="onSubmit()">
         <div id="test-l-1" class="content m-0">
           <div class="form-group">
-            <app-general></app-general>
+            <app-general [row]="row" #stepOne></app-general>
           </div>
           <div class="col-12 d-flex justify-content-end">
             <button (click)="next()" class="btn btn-primary">Next</button>
@@ -52,30 +52,28 @@
         </div>
         <div id="test-l-2" class="content m-0">
           <div class="form-group">
-            <app-team></app-team>
+            <app-team [row]="row" #stepTwo></app-team>
           </div>
           <div class="col-12 d-flex justify-content-end">
             <button (click)="next()" class="btn btn-primary">Next</button>
           </div>
         </div>
         <div id="test-l-3" class="content text-center m-0">
-          <app-task></app-task>
+          <app-task [row]="row" #stepThree></app-task>
           <div class="col-12 d-flex justify-content-end">
             <button (click)="next()" class="btn btn-primary">Next</button>
           </div>
         </div>
         <div id="test-l-4" class="content m-0">
-          <app-notification></app-notification>
+          <app-notification [row]="row" #stepFour></app-notification>
           <div class="col-12 d-flex justify-content-end">
-            <button
-              (click)="modal.close('Accept click')"
-              class="btn btn-primary"
-            >
-              Add
+            <button (click)="saveProject()" class="btn btn-primary">
+              Save
             </button>
           </div>
         </div>
       </form>
     </div>
   </div>
+  <ngx-loading [show]="loading"></ngx-loading>
 </div>

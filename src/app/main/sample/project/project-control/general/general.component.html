@@ -1,5 +1,5 @@
 <div class="content-wrapper p-0 card">
-  <div class="content-body card-body">
+  <div class="content-body card-body" [formGroup]="formGeneral">
     <div class="col-12">
       <div class="form-group row">
         <div class="col-sm-2 col-form-label">
@@ -8,6 +8,7 @@
         <div class="col-sm-7">
           <fieldset class="form-group">
             <ng-select
+              formControlName="customerId"
               [items]="listClient"
               [bindValue]="'id'"
               [bindLabel]="'name'"
@@ -30,6 +31,7 @@
         </div>
         <div class="col-sm-10">
           <input
+            formControlName="name"
             type="text"
             id="first-name"
             class="form-control"
@@ -46,6 +48,7 @@
         </div>
         <div class="col-sm-6">
           <input
+            formControlName="code"
             type="text"
             id="first-name"
             class="form-control"
@@ -58,6 +61,7 @@
             [config]="DateRangeOptions"
             placeholder="Select date range"
             name="DateRange"
+            (change)="changeDate($event)"
           ></ng2-flatpickr>
         </div>
       </div>
@@ -69,6 +73,7 @@
         </div>
         <div class="col-sm-10">
           <input
+            formControlName="note"
             type="text"
             id="first-name"
             class="form-control"
@@ -106,6 +111,7 @@
         <div class="col-sm-5">
           <fieldset class="form-group">
             <ng-select
+              formControlName="projectType"
               [items]="listProjectType"
               [bindValue]="'value'"
               [bindLabel]="'name'"

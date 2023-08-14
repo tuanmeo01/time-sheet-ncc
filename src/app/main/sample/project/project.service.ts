@@ -1,6 +1,8 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { FormGroup } from "@angular/forms";
 import { environment } from "environments/environment";
+import { BehaviorSubject } from "rxjs";
 @Injectable({ providedIn: "root" })
 export class ProjectService {
   constructor(private _http: HttpClient) {}
@@ -23,5 +25,29 @@ export class ProjectService {
   }
   getAllTask() {
     return this._http.get(`${environment.apiUrl}/Task/GetAll`);
+  }
+  getProjectById(id: string) {
+    const params = new HttpParams().set("input", id);
+    return this._http.get<any>(`${environment.apiUrl}/Project/Get`, { params });
+  }
+  getTimeSheetProject(body) {
+    const params = new HttpParams()
+      .set("projectId", body.get("projectId").value)
+      .set("startDate", body.get("startDate").value)
+      .set("endDate", body.get("endDate").value);
+    return this._http.get<any>(
+      `${environment.apiUrl}/TimeSheetProject/GetTimeSheetStatisticTasks`,
+      { params }
+    );
+  }
+  getTimeSheetTeam(body) {
+    const params = new HttpParams()
+      .set("projectId", body.get("projectId").value)
+      .set("startDate", body.get("startDate").value)
+      .set("endDate", body.get("endDate").value);
+    return this._http.get<any>(
+      `${environment.apiUrl}/TimeSheetProject/GetTimeSheetStatisticTeams`,
+      { params }
+    );
   }
 }

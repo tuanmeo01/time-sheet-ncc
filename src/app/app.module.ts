@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule, Routes } from "@angular/router";
-
+import { NgxLoadingModule } from "ngx-loading";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from "@ngx-translate/core";
 import "hammerjs";
@@ -27,7 +27,7 @@ const appRoutes: Routes = [
       import("./main/pages/pages.module").then((m) => m.PagesModule),
   },
   {
-    path: "home",
+    path: "",
     loadChildren: () =>
       import("./main/sample/apps.module").then((m) => m.AppsModule),
     canActivate: [AuthGuard],
@@ -58,7 +58,8 @@ const appRoutes: Routes = [
     CoreCommonModule,
     CoreSidebarModule,
     CoreThemeCustomizerModule,
-
+    //loading
+    NgxLoadingModule.forRoot({}),
     // App modules
     LayoutModule,
     AppsModule,

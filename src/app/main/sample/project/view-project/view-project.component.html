@@ -1,0 +1,116 @@
+<div class="modal-header">
+  <h5 class="modal-title">{{ title }}</h5>
+  <button
+    type="button"
+    class="close"
+    (click)="modal2.dismiss('Cross click')"
+    aria-label="Close"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body" tabindex="0" ngbAutofocus>
+  <ul ngbNav #nav="ngbNav" class="nav nav-pills">
+    <li ngbNavItem>
+      <a ngbNavLink>Task</a>
+      <ng-template ngbNavContent>
+        <ngx-datatable
+          [rows]="kitchenSinkRows"
+          [rowHeight]="58"
+          class="bootstrap core-bootstrap cursor-pointer"
+          [limit]="10"
+          [columnMode]="ColumnMode.force"
+          [headerHeight]="40"
+          [footerHeight]="50"
+          [scrollbarH]="true"
+          [limit]="basicSelectedOption"
+        >
+          <ngx-datatable-column
+            [width]="50"
+            [sortable]="false"
+            [canAutoResize]="false"
+            [draggable]="false"
+            [resizeable]="false"
+          >
+          </ngx-datatable-column>
+          <ngx-datatable-column
+            name="Billable Tasks"
+            prop="taskName"
+            [width]="100"
+          >
+          </ngx-datatable-column>
+          <ngx-datatable-column
+            name="Hour"
+            prop="totalWorkingTime"
+            [width]="100"
+          >
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Process" [width]="100">
+            <ng-template ngx-datatable-cell-template let-row="row">
+              <div class="progress-wrapper">
+                <div class="mb-25">{{ row.billableWorkingTime }}%</div>
+                <ngb-progressbar
+                  type="primary"
+                  [value]="row.progress"
+                ></ngb-progressbar>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </ng-template>
+    </li>
+    <li ngbNavItem>
+      <a ngbNavLink>Team</a>
+      <ng-template ngbNavContent>
+        <ngx-datatable
+          [rows]="kitchenSinkRows2"
+          [rowHeight]="58"
+          class="bootstrap core-bootstrap cursor-pointer"
+          [limit]="10"
+          [columnMode]="ColumnMode.force"
+          [headerHeight]="40"
+          [footerHeight]="50"
+          [scrollbarH]="true"
+          [limit]="basicSelectedOption"
+        >
+          <ngx-datatable-column
+            [width]="50"
+            [sortable]="false"
+            [canAutoResize]="false"
+            [draggable]="false"
+            [resizeable]="false"
+          >
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Name" prop="userName" [width]="100">
+          </ngx-datatable-column>
+          <ngx-datatable-column
+            name="Hour"
+            prop="totalWorkingTime"
+            [width]="100"
+          >
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Process" [width]="100">
+            <ng-template ngx-datatable-cell-template let-row="row">
+              <div class="progress-wrapper">
+                <div class="mb-25">{{ row.billableWorkingTime }}%</div>
+                <ngb-progressbar
+                  type="primary"
+                  [value]="row.progress"
+                ></ngb-progressbar>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </ng-template>
+    </li>
+  </ul>
+  <div class="col-4 p-0">
+    <ng2-flatpickr
+      [config]="DateRangeOptions2"
+      placeholder="date"
+      name="DateRange2"
+      (change)="changeDate($event)"
+    ></ng2-flatpickr>
+  </div>
+  <div [ngbNavOutlet]="nav" class="mt-1"></div>
+</div>

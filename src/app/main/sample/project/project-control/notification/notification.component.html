@@ -1,7 +1,8 @@
 <div class="content-wrapper p-0 card">
-  <div class="content-body card-body">
+  <div class="content-body card-body" [formGroup]="formNoti">
     <div class="custom-control custom-checkbox">
       <input
+        formControlName="isNotifyToKomu"
         type="checkbox"
         (click)="checked()"
         class="custom-control-input"
@@ -15,11 +16,11 @@
       <div class="form-group">
         <input
           autofocus
-          [disabled]="isChecked"
           type="text"
           class="form-control"
           id="basicInput"
-          placeholder="Komu chanel id"
+          placeholder="Komu channel id"
+          formControlName="komuChannelId"
         />
       </div>
     </div>

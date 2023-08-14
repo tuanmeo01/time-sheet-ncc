@@ -1,0 +1,10 @@
+@import "@core/scss/angular/libs/datatables.component.scss";
+@import "@core/scss/angular/libs/select.component.scss";
+@import "@core/scss/angular/libs/flatpickr.component.scss";
+
+.datatable-scroll {
+  width: auto !important;
+  .datatable-row-center:hover {
+    background: rgba(51, 255, 0, 0.295);
+  }
+}

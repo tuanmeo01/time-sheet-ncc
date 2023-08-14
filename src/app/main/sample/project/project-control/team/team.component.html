@@ -81,6 +81,7 @@
           </div>
         </div>
         <ngx-datatable
+          [formGroup]="formTeam"
           [rows]="tempData"
           [rowHeight]="50"
           class="bootstrap core-bootstrap cursor-pointer"
@@ -171,7 +172,7 @@
                     ? "staff"
                     : value === 2
                     ? "collaborator"
-                    : "undefine"
+                    : "senior"
                 }}
               </div>
             </ng-template>
@@ -190,7 +191,8 @@
                   'badge-light-primary':
                     value === 14 || value === 15 || value === 16,
                   'badge-light-info': value === 0,
-                  'badge-light-error': value === 1
+                  'badge-light-error': value === 1,
+                  'badge-light-warning': value === 2
                 }"
               >
                 {{
@@ -210,7 +212,7 @@
                     ? "Middle"
                     : value === 14 || value === 15 || value === 16
                     ? "Senior"
-                    : "Senior"
+                    : "undefine"
                 }}
               </div>
             </ng-template>
